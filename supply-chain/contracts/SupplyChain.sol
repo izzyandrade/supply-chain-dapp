@@ -73,12 +73,12 @@ contract SupplyChain is BuyerRole, RegulatorRole, PharmaRole {
     }
 
     // Define a modifier that checks the price and refunds the remaining balance
-    // modifier checkValue(uint _upc) {
-    //     _;
-    //     uint _price = items[_upc].productPrice;
-    //     uint amountToReturn = msg.value - _price;
-    //     items[_upc].buyerID.transfer(amountToReturn);
-    // }
+    modifier checkValue(uint _upc) {
+        _;
+        uint _price = items[_upc].productPrice;
+        uint amountToReturn = msg.value - _price;
+        payable(items[_upc].buyerId).transfer(amountToReturn);
+    }
 
     modifier produced(uint _upc) {
         require(items[_upc].itemState == State.Produced);
@@ -196,5 +196,71 @@ contract SupplyChain is BuyerRole, RegulatorRole, PharmaRole {
     {
         items[_upc].productPrice = _price;
         items[_upc].itemState = State.SentToMarket;
+        emit SentToMarket(_upc);
+    }
+
+    function buyMedicine(uint _upc)
+        public
+        payable
+        onlyBuyer
+        sentToMarket(_upc)
+        paidEnough(items[_upc].productPrice)
+        checkValue(_upc)
+    {
+        uint price = items[_upc].productPrice;
+        items[_upc].buyerId = msg.sender;
+        items[_upc].ownerId = msg.sender;
+        items[_upc].itemState = State.Bought;
+        payable(items[_upc].originPharmaId).transfer(price);
+        emit Bought(_upc);
+    }
+
+    function replenishHospitals(uint _upc)
+        public
+        onlyOwnerOfMedicine(_upc)
+        onlyBuyer
+        bought(_upc)
+    {
+        items[_upc].itemState = State.Available;
+        emit Available(_upc);
+    }
+
+    function fetchItem(uint _upc)
+        public
+        view
+        returns (
+            uint _sku,
+            uint upc,
+            address ownerId,
+            address originPharmaId,
+            string memory originPharmaName,
+            string memory originPharmaInformation,
+            string memory originPharmaCountry,
+            string memory productName,
+            uint productPrice,
+            string memory itemState,
+            address regulatorId,
+            address buyerId
+        )
+    {
+        _sku = items[_upc].sku;
+        upc = items[_upc].upc;
+        ownerId = items[_upc].ownerId;
+        originPharmaId = items[_upc].originPharmaId;
+        originPharmaInformation = items[_upc].originPharmaInformation;
+        originPharmaCountry = items[_upc].originPharmaCountry;
+        originPharmaName = items[_upc].originPharmaName;
+        productName = items[_upc].productName;
+        productPrice = items[_upc].productPrice;
+        regulatorId = items[_upc].regulatorId;
+        buyerId = items[_upc].buyerId;
+        uint stateIndex = uint(items[_sku].itemState);
+        if (stateIndex == 0) itemState = "Produced";
+        if (stateIndex == 1) itemState = "Tested";
+        if (stateIndex == 2) itemState = "SentToVerification";
+        if (stateIndex == 3) itemState = "Approved";
+        if (stateIndex == 4) itemState = "SentToMarket";
+        if (stateIndex == 5) itemState = "Bought";
+        if (stateIndex == 6) itemState = "Available";
     }
 }

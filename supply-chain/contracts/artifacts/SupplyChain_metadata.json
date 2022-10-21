@@ -221,6 +221,106 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "_upc",
+						"type": "uint256"
+					}
+				],
+				"name": "approveMedicine",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_upc",
+						"type": "uint256"
+					}
+				],
+				"name": "buyMedicine",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_upc",
+						"type": "uint256"
+					}
+				],
+				"name": "fetchItem",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_sku",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "upc",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "ownerId",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "originPharmaId",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "originPharmaName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "originPharmaInformation",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "originPharmaCountry",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "productName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "productPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "itemState",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "regulatorId",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "buyerId",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "account",
 						"type": "address"
@@ -342,6 +442,37 @@
 						"internalType": "uint256",
 						"name": "_upc",
 						"type": "uint256"
+					}
+				],
+				"name": "replenishHospitals",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_upc",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "sendToMarket",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_upc",
+						"type": "uint256"
 					},
 					{
 						"internalType": "address",
@@ -424,10 +555,10 @@
 			]
 		},
 		"contracts/SupplyChain.sol": {
-			"keccak256": "0x21eda118d0906e4fc54560fbc72d2ba1debd9e4ae345f641a2cbe435c456312c",
+			"keccak256": "0x99925d420d65083367b054fed1b4ff1c79c53e4a357fb7981738fe54b3d03cff",
 			"urls": [
-				"bzz-raw://1f6cb67345ce68211eeff5d3bc1a6b77212aedf83134f0e248103a138cb2e4c8",
-				"dweb:/ipfs/QmfAaGb5gdg7JiTqkN1BCwThzeEFGEqse8f7ZxRH3Kebht"
+				"bzz-raw://64934d0faaf943f4e221cf18b9e8b6cb68830fb8e5e51a491d3947813711c597",
+				"dweb:/ipfs/QmbrWtfLKnCC8Yt7BAN7J7UqejX71eHCAWfHZY2nyWQ6Dz"
 			]
 		}
 	},
