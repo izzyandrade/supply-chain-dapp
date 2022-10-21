@@ -1,0 +1,435 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "upc",
+						"type": "uint256"
+					}
+				],
+				"name": "Approved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "upc",
+						"type": "uint256"
+					}
+				],
+				"name": "Available",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "upc",
+						"type": "uint256"
+					}
+				],
+				"name": "Bought",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "BuyerAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "BuyerRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "PharmaAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "PharmaRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "upc",
+						"type": "uint256"
+					}
+				],
+				"name": "Produced",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "RegulatorAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "RegulatorRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "upc",
+						"type": "uint256"
+					}
+				],
+				"name": "SentToMarket",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "upc",
+						"type": "uint256"
+					}
+				],
+				"name": "SentToVerification",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "upc",
+						"type": "uint256"
+					}
+				],
+				"name": "Tested",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "addBuyer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "addPharma",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "addRegulator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "isBuyer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "isPharma",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "isRegulator",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "kill",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_upc",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_originPharmaName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_originPharmaInformation",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_originPharmaCountry",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_productName",
+						"type": "string"
+					}
+				],
+				"name": "produceMedicine",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceBuyer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renouncePharma",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceRegulator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_upc",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_regulatorId",
+						"type": "address"
+					}
+				],
+				"name": "sendToRegulation",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_upc",
+						"type": "uint256"
+					}
+				],
+				"name": "testMedicine",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/SupplyChain.sol": "SupplyChain"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/BuyerRole.sol": {
+			"keccak256": "0xa196b2b213bc6b4eb9ef23962f6725a81f690ecc4db18023eb5561bba5486cdd",
+			"urls": [
+				"bzz-raw://bbe33d2729eb10cda34e79d6001426bc7baa72ea8a636cd5c09f61f59f6083f5",
+				"dweb:/ipfs/QmTk84wnfVrPqMbYDNH8dBqTwoJhVDbFw9rHJPaYk9aRLi"
+			]
+		},
+		"contracts/PharmaRole.sol": {
+			"keccak256": "0x61cefd40b84ccb1bea0077e84c58ac6c6a6f05915604e5435f5af82751c200ad",
+			"urls": [
+				"bzz-raw://3fd9f9843df0c954562261015374c6978cd643068395ef936b48a67d7824a115",
+				"dweb:/ipfs/Qmdtm5UztW9aDp2eADo7Rk5tavuwiWQrvoj7mnzgNPNexA"
+			]
+		},
+		"contracts/RegulatorRole.sol": {
+			"keccak256": "0x09ee07d9405c456dffa5ee0968631413cc1ac8637c9bb86bf591dd2022fe4481",
+			"urls": [
+				"bzz-raw://e745a51fe118d18336c667cd943db0eec2eb1eb78de3b32acdc56056bfd066da",
+				"dweb:/ipfs/QmZ31ewimYbVgK37FmGS1Zh7eUd34kEBu1NmiN6C8qFXnf"
+			]
+		},
+		"contracts/Roles.sol": {
+			"keccak256": "0xdf61e4d307963240fa2c76b34dc7d740e612a18bd6e7d12bd3a1d477f99b7cba",
+			"urls": [
+				"bzz-raw://2c4d1c7d8de02ef9ee8940593b7e12b098a6b960cdd0ad702d693591beaf4c01",
+				"dweb:/ipfs/QmS69k5xbqDfPm47CEwapAYKMs5XgfWBNTuLegkNbHyzHu"
+			]
+		},
+		"contracts/SupplyChain.sol": {
+			"keccak256": "0x21eda118d0906e4fc54560fbc72d2ba1debd9e4ae345f641a2cbe435c456312c",
+			"urls": [
+				"bzz-raw://1f6cb67345ce68211eeff5d3bc1a6b77212aedf83134f0e248103a138cb2e4c8",
+				"dweb:/ipfs/QmfAaGb5gdg7JiTqkN1BCwThzeEFGEqse8f7ZxRH3Kebht"
+			]
+		}
+	},
+	"version": 1
+}
