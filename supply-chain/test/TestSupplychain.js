@@ -49,7 +49,7 @@ contract('SupplyChain', function (accounts) {
   it("Testing 'produceMedicine' function that allows a pharma to produce a new item in market", async () => {
     const supplyChain = await SupplyChain.deployed();
 
-    const producedMedicine = await supplyChain.produceMedicine(
+    const produceMedicineResult = await supplyChain.produceMedicine(
       upc,
       originPharmaName,
       originPharmaInformation,
@@ -96,7 +96,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(resultBuffer[8], 0, 'Error: Missing or Invalid productPrice');
     assert.equal(resultBuffer[9], 'Produced', 'Error: Invalid item State');
     assert.equal(
-      producedMedicine.logs[0].event,
+      produceMedicineResult.logs[0].event,
       'Produced',
       'Should emit Produced event'
     );
@@ -105,14 +105,14 @@ contract('SupplyChain', function (accounts) {
   it('Testing testMedicine() function that allows a pharma to test medicine', async () => {
     const supplyChain = await SupplyChain.deployed();
 
-    const testMedicine = await supplyChain.testMedicine(upc, {
+    const testMedicineResult = await supplyChain.testMedicine(upc, {
       from: originPharmaId,
     });
     const resultBuffer = await supplyChain.fetchItem.call(upc);
 
     assert.equal(resultBuffer[9], 'Tested', 'Error: Invalid item State');
     assert.equal(
-      testMedicine.logs[0].event,
+      testMedicineResult.logs[0].event,
       'Tested',
       'Should emit Tested event'
     );
@@ -122,7 +122,7 @@ contract('SupplyChain', function (accounts) {
   it('Testing sendToRegulation() function that allows a pharma to send meds to regulation', async () => {
     const supplyChain = await SupplyChain.deployed();
 
-    const sendToRegulation = await supplyChain.sendToRegulation(
+    const sendToRegulationResult = await supplyChain.sendToRegulation(
       upc,
       regulatorId,
       {
@@ -143,56 +143,67 @@ contract('SupplyChain', function (accounts) {
     );
     assert.equal(resultBuffer[10], regulatorId, 'Error: Invalid regulatorId');
     assert.equal(
-      sendToRegulation.logs[0].event,
+      sendToRegulationResult.logs[0].event,
       'SentToVerification',
       'Should emit SentToVerification event'
     );
   });
 
   // 4th Test
-  it('Testing smart contract function sellItem() that allows a farmer to sell coffee', async () => {
+  it('Testing approveMedicine() that allows a regulator to approve medicine', async () => {
     const supplyChain = await SupplyChain.deployed();
 
-    // Declare and Initialize a variable for event
-
-    // Watch the emitted event ForSale()
-
-    // Mark an item as ForSale by calling function sellItem()
-
-    // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-    // Verify the result set
+    const approveMedicineResult = await supplyChain.approveMedicine(upc, {
+      from: regulatorId,
+    });
+    const resultBuffer = await supplyChain.fetchItem.call(upc);
+    assert.equal(resultBuffer[2], originPharmaId, 'Error: Invalid ownerId');
+    assert.equal(resultBuffer[9], 'Approved', 'Error: Invalid item State');
+    assert.equal(
+      approveMedicineResult.logs[0].event,
+      'Approved',
+      'Should emit Approved event'
+    );
   });
 
   // 5th Test
-  it('Testing smart contract function buyItem() that allows a distributor to buy coffee', async () => {
+  it('Testing sendToMarket() function that allows a pharma to list medicine on market', async () => {
     const supplyChain = await SupplyChain.deployed();
 
-    // Declare and Initialize a variable for event
-
-    // Watch the emitted event Sold()
-    // var event = supplyChain.Sold();
-
-    // Mark an item as Sold by calling function buyItem()
-
-    // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-    // Verify the result set
+    const sendToMarketResult = await supplyChain.sendToMarket(
+      upc,
+      productPrice,
+      {
+        from: originPharmaId,
+      }
+    );
+    const resultBuffer = await supplyChain.fetchItem.call(upc);
+    assert.equal(resultBuffer[8], productPrice, 'Error: Invalid productPrice');
+    assert.equal(resultBuffer[9], 'SentToMarket', 'Error: Invalid item State');
+    assert.equal(
+      sendToMarketResult.logs[0].event,
+      'SentToMarket',
+      'Should emit SentToMarket event'
+    );
   });
 
   // 6th Test
-  it('Testing smart contract function shipItem() that allows a distributor to ship coffee', async () => {
+  it('Testing buyMedicine() function that allows a buyer to buy medicine', async () => {
     const supplyChain = await SupplyChain.deployed();
 
-    // Declare and Initialize a variable for event
-
-    // Watch the emitted event Shipped()
-
-    // Mark an item as Sold by calling function shipItem()
-
-    // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-    // Verify the result set
+    const buyMedicineResult = await supplyChain.buyMedicine(upc, {
+      from: buyerId,
+      value: Web3.utils.toWei('1', 'ether'),
+    });
+    const resultBuffer = await supplyChain.fetchItem.call(upc);
+    assert.equal(resultBuffer[2], buyerId, 'Error: Invalid ownerId');
+    assert.equal(resultBuffer[9], 'Bought', 'Error: Invalid item State');
+    assert.equal(resultBuffer[11], buyerId, 'Error: Invalid buyerId');
+    assert.equal(
+      buyMedicineResult.logs[0].event,
+      'Bought',
+      'Should emit Bought event'
+    );
   });
 
   // 7th Test
