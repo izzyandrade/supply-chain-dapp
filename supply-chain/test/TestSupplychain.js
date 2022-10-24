@@ -207,50 +207,65 @@ contract('SupplyChain', function (accounts) {
   });
 
   // 7th Test
-  it('Testing smart contract function receiveItem() that allows a retailer to mark coffee received', async () => {
+  it('Testing replenishHospitals() function that allows a buyer to mark medicine as available', async () => {
     const supplyChain = await SupplyChain.deployed();
 
-    // Declare and Initialize a variable for event
-
-    // Watch the emitted event Received()
-
-    // Mark an item as Sold by calling function receiveItem()
-
-    // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-    // Verify the result set
-  });
-
-  // 8th Test
-  it('Testing smart contract function purchaseItem() that allows a consumer to purchase coffee', async () => {
-    const supplyChain = await SupplyChain.deployed();
-
-    // Declare and Initialize a variable for event
-
-    // Watch the emitted event Purchased()
-
-    // Mark an item as Sold by calling function purchaseItem()
-
-    // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-    // Verify the result set
+    const replenishHospitalsResult = await supplyChain.replenishHospitals(upc, {
+      from: buyerId,
+    });
+    const resultBuffer = await supplyChain.fetchItem.call(upc);
+    assert.equal(resultBuffer[9], 'Available', 'Error: Invalid item State');
+    assert.equal(
+      replenishHospitalsResult.logs[0].event,
+      'Available',
+      'Should emit Available event'
+    );
   });
 
   // 9th Test
-  it('Testing smart contract function fetchItemBufferOne() that allows anyone to fetch item details from blockchain', async () => {
+  it('Testing fetchItem() function that allows anyone to fetch item details from blockchain', async () => {
     const supplyChain = await SupplyChain.deployed();
 
-    // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-    // Verify the result set:
-  });
-
-  // 10th Test
-  it('Testing smart contract function fetchItemBufferTwo() that allows anyone to fetch item details from blockchain', async () => {
-    const supplyChain = await SupplyChain.deployed();
-
-    // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-    // Verify the result set:
+    const resultBuffer = await supplyChain.fetchItem.call(upc);
+    assert.equal(resultBuffer[0], sku, 'Error: Invalid item SKU');
+    assert.equal(resultBuffer[1], upc, 'Error: Invalid item UPC');
+    assert.equal(resultBuffer[2], buyerId, 'Error: Missing or Invalid ownerID');
+    assert.equal(
+      resultBuffer[3],
+      originPharmaId,
+      'Error: Missing or Invalid pharmaId'
+    );
+    assert.equal(
+      resultBuffer[4],
+      originPharmaName,
+      'Error: Missing or Invalid originPharmaName'
+    );
+    assert.equal(
+      resultBuffer[5],
+      originPharmaInformation,
+      'Error: Missing or Invalid originPharmaInformation'
+    );
+    assert.equal(
+      resultBuffer[6],
+      originPharmaCountry,
+      'Error: Missing or Invalid originPharmaCountry'
+    );
+    assert.equal(
+      resultBuffer[7],
+      productName,
+      'Error: Missing or Invalid productName'
+    );
+    assert.equal(
+      resultBuffer[8],
+      productPrice,
+      'Error: Missing or Invalid productPrice'
+    );
+    assert.equal(resultBuffer[9], 'Available', 'Error: Invalid item State');
+    assert.equal(
+      resultBuffer[10],
+      regulatorId,
+      'Error: Invalid item Regulator Id'
+    );
+    assert.equal(resultBuffer[11], buyerId, 'Error: Invalid item Buyer Id');
   });
 });
