@@ -10,7 +10,7 @@ contract BuyerRole {
 
     Roles.Role private buyers;
 
-    constructor() public {
+    constructor() {
         _addBuyer(msg.sender);
     }
 

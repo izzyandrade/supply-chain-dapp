@@ -10,7 +10,7 @@ contract PharmaRole {
 
     Roles.Role private pharmas;
 
-    constructor() public {
+    constructor() {
         _addPharma(msg.sender);
     }
 

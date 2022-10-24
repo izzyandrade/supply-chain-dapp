@@ -10,7 +10,7 @@ contract RegulatorRole {
 
     Roles.Role private regulators;
 
-    constructor() public {
+    constructor() {
         _addRegulator(msg.sender);
     }
 
