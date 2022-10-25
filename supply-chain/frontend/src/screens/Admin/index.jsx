@@ -10,6 +10,8 @@ const Admin = () => {
   const [regulator, setRegulator] = useState('');
   const [buyer, setBuyer] = useState('');
 
+  //TODO: add user feedback for success and errors on adding actors
+
   const addPharma = async () => {
     const response = await supplyChain.methods
       .addPharma(pharma)

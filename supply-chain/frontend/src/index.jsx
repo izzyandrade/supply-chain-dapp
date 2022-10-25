@@ -3,7 +3,7 @@ import Web3 from 'web3';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
-import { Home, Admin } from './screens';
+import { Home, Admin, Pharma, Regulator, Buyer } from './screens';
 import { Web3Context } from './context/Web3Context/Web3Context';
 import SupplyChainArtifact from './contracts/SupplyChain.json';
 
@@ -15,6 +15,18 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: <Admin />,
+  },
+  {
+    path: '/pharma',
+    element: <Pharma />,
+  },
+  {
+    path: '/regulator',
+    element: <Regulator />,
+  },
+  {
+    path: '/buyer',
+    element: <Buyer />,
   },
 ]);
 

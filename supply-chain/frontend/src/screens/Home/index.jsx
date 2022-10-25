@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Web3Context } from '../../context/Web3Context/Web3Context';
-import { Link } from 'react-router-dom';
 import * as S from './styles.js';
 
 const Home = () => {
