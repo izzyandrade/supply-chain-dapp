@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useState } from 'react';
 import { Web3Context } from '../../context/Web3Context/Web3Context';
+import { Link } from 'react-router-dom';
 import * as S from './styles.js';
 
 const Admin = () => {
@@ -62,6 +63,7 @@ const Admin = () => {
           />
           <S.FormItemSubmit onClick={addBuyer}>Add</S.FormItemSubmit>
         </S.FormItem>
+        <Link to="/">Go back</Link>
       </S.FormBox>
     </S.AdminContainer>
   );
