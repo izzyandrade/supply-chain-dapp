@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { Web3Context } from '../../context/Web3Context/Web3Context';
+import { Link } from 'react-router-dom';
 import { ProduceMedicine } from '../../components/pharma/operations/ProduceMedicine';
-import { TestMedicine } from '../../components/pharma/operations/TestMedicine';
-import * as S from './styles';
-import { SendToRegulation } from '../../components/pharma/operations/SendToRegulation';
 import { PutUpForSale } from '../../components/pharma/operations/PutUpForSale';
+import { SendToRegulation } from '../../components/pharma/operations/SendToRegulation';
+import { TestMedicine } from '../../components/pharma/operations/TestMedicine';
+import { Web3Context } from '../../context/Web3Context/Web3Context';
+import * as S from './styles';
 
 export const Pharma = () => {
   const { selectedAccount } = useContext(Web3Context);
@@ -18,6 +19,7 @@ export const Pharma = () => {
         <SendToRegulation />
         <PutUpForSale />
       </S.FormBox>
+      <Link to="/">Go back</Link>
     </S.PharmaContainer>
   );
 };

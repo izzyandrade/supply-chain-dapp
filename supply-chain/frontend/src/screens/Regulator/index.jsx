@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { Web3Context } from '../../context/Web3Context/Web3Context';
+import { Link } from 'react-router-dom';
 import { ApproveMedicine } from '../../components/regulator/operations/ApproveMedicine';
+import { Web3Context } from '../../context/Web3Context/Web3Context';
 import * as S from './styles';
 
 export const Regulator = () => {
@@ -12,6 +13,7 @@ export const Regulator = () => {
       <S.FormBox>
         <ApproveMedicine />
       </S.FormBox>
+      <Link to="/">Go back</Link>
     </S.RegulatorContainer>
   );
 };
