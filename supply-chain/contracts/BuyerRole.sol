@@ -26,7 +26,7 @@ contract BuyerRole {
     }
 
     // Define a function 'addBuyer' that adds this role
-    function addBuyer(address account) public onlyBuyer {
+    function addBuyer(address account) public {
         _addBuyer(account);
     }
 

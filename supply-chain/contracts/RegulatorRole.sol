@@ -26,7 +26,7 @@ contract RegulatorRole {
     }
 
     // Define a function 'addRegulator' that adds this role
-    function addRegulator(address account) public onlyRegulator {
+    function addRegulator(address account) public {
         _addRegulator(account);
     }
 

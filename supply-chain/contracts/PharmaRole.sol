@@ -26,7 +26,7 @@ contract PharmaRole {
     }
 
     // Define a function 'addPharma' that adds this role
-    function addPharma(address account) public onlyPharma {
+    function addPharma(address account) public {
         _addPharma(account);
     }
 
