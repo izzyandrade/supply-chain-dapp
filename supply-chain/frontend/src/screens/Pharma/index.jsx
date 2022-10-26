@@ -7,7 +7,7 @@ import { SendToRegulation } from '../../components/pharma/operations/SendToRegul
 import { PutUpForSale } from '../../components/pharma/operations/PutUpForSale';
 
 export const Pharma = () => {
-  const { selectedAccount, supplyChain } = useContext(Web3Context);
+  const { selectedAccount } = useContext(Web3Context);
   return (
     <S.PharmaContainer>
       <p>Current Address: {selectedAccount}</p>
